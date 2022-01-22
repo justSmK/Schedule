@@ -1,5 +1,5 @@
 //
-//  SheduleViewController.swift
+//  ScheduleViewController.swift
 //  Schedule
 //
 //  Created by justSmK on 22.01.2022.
@@ -8,7 +8,7 @@
 import UIKit
 import FSCalendar
 
-class SheduleViewController: UIViewController {
+class ScheduleViewController: UIViewController {
 
     var calendarHeightConstraint: NSLayoutConstraint!
     
@@ -35,13 +35,13 @@ class SheduleViewController: UIViewController {
         return tableView
     }()
     
-    let isSheduleCell = "idSheduleCell"
+    let isScheduleCell = "idScheduleCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
-        title = "Shedule"
+        title = "Schedule"
         
         calendar.delegate = self
         calendar.dataSource = self
@@ -91,7 +91,7 @@ class SheduleViewController: UIViewController {
 
 //MARK: FSCalendarDataSource, FSCalendarDelegate
 
-extension SheduleViewController: FSCalendarDataSource, FSCalendarDelegate {
+extension ScheduleViewController: FSCalendarDataSource, FSCalendarDelegate {
     
     func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
         calendarHeightConstraint.constant = bounds.height
@@ -107,7 +107,7 @@ extension SheduleViewController: FSCalendarDataSource, FSCalendarDelegate {
 
 //MARK: SetConstraints
 
-extension SheduleViewController {
+extension ScheduleViewController {
     func setConstraints() {
         
         view.addSubview(calendar)

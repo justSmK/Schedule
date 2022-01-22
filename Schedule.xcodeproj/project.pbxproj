@@ -17,7 +17,7 @@
 		BB6E73D8279C5B710013CC33 /* ScheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E73D7279C5B710013CC33 /* ScheduleTests.swift */; };
 		BB6E73E2279C5B710013CC33 /* ScheduleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E73E1279C5B710013CC33 /* ScheduleUITests.swift */; };
 		BB6E73E4279C5B710013CC33 /* ScheduleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E73E3279C5B710013CC33 /* ScheduleUITestsLaunchTests.swift */; };
-		BBFD29E6279C5EF600CDA924 /* SheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFD29E5279C5EF600CDA924 /* SheduleViewController.swift */; };
+		BBFD29E6279C5EF600CDA924 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFD29E5279C5EF600CDA924 /* ScheduleViewController.swift */; };
 		BBFD29E8279C5F1300CDA924 /* TasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFD29E7279C5F1300CDA924 /* TasksViewController.swift */; };
 		BBFD29EA279C5F5400CDA924 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFD29E9279C5F5400CDA924 /* ContactsViewController.swift */; };
 		ECE320218C29A593316E0A6E /* Pods_ScheduleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE6A8D51BE166F7C5DFC7590 /* Pods_ScheduleTests.framework */; };
@@ -60,7 +60,7 @@
 		BB6E73DD279C5B710013CC33 /* ScheduleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScheduleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB6E73E1279C5B710013CC33 /* ScheduleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUITests.swift; sourceTree = "<group>"; };
 		BB6E73E3279C5B710013CC33 /* ScheduleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		BBFD29E5279C5EF600CDA924 /* SheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheduleViewController.swift; sourceTree = "<group>"; };
+		BBFD29E5279C5EF600CDA924 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		BBFD29E7279C5F1300CDA924 /* TasksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksViewController.swift; sourceTree = "<group>"; };
 		BBFD29E9279C5F5400CDA924 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		EDD0F14B7786CC0428B58799 /* Pods_Schedule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Schedule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				BB6E73C4279C5B700013CC33 /* MainTabBarController.swift */,
-				BBFD29E5279C5EF600CDA924 /* SheduleViewController.swift */,
+				BBFD29E5279C5EF600CDA924 /* ScheduleViewController.swift */,
 				BBFD29E7279C5F1300CDA924 /* TasksViewController.swift */,
 				BBFD29E9279C5F5400CDA924 /* ContactsViewController.swift */,
 			);
@@ -439,7 +439,7 @@
 				BB6E73C1279C5B700013CC33 /* AppDelegate.swift in Sources */,
 				BBFD29E8279C5F1300CDA924 /* TasksViewController.swift in Sources */,
 				BB6E73C3279C5B700013CC33 /* SceneDelegate.swift in Sources */,
-				BBFD29E6279C5EF600CDA924 /* SheduleViewController.swift in Sources */,
+				BBFD29E6279C5EF600CDA924 /* ScheduleViewController.swift in Sources */,
 				BBFD29EA279C5F5400CDA924 /* ContactsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
