@@ -102,7 +102,8 @@ extension TasksViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idTasksCell, for: indexPath) as! TasksTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: idTasksCell,
+                                                 for: indexPath) as! TasksTableViewCell
         cell.cellTaskDelegate = self
         cell.index = indexPath
         return cell
@@ -144,7 +145,13 @@ extension TasksViewController {
         
         view.addSubview(calendar)
         
-        calendarHeightConstraint = NSLayoutConstraint(item: calendar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
+        calendarHeightConstraint = NSLayoutConstraint(item: calendar,
+                                                      attribute: .height,
+                                                      relatedBy: .equal,
+                                                      toItem: nil,
+                                                      attribute: .notAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: 300)
         calendar.addConstraint(calendarHeightConstraint)
         
         NSLayoutConstraint.activate([

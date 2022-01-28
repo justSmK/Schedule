@@ -56,6 +56,16 @@ class ScheduleViewController: UIViewController {
         swipeAction()
         
         showHideButton.addTarget(self, action: #selector(showHideButtonTapped), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(AddButtonTapped))
+        
+    }
+    
+    @objc func AddButtonTapped() {
+        let scheduleOption = OptionsScheduleViewController()
+        navigationController?.pushViewController(scheduleOption, animated: true)
     }
     
     @objc func showHideButtonTapped() {
@@ -100,7 +110,8 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idScheduleCell, for: indexPath) as! ScheduleTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: idScheduleCell,
+                                                 for: indexPath) as! ScheduleTableViewCell
         
         return cell
     }
@@ -133,7 +144,13 @@ extension ScheduleViewController {
         
         view.addSubview(calendar)
         
-        calendarHeightConstraint = NSLayoutConstraint(item: calendar, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 300)
+        calendarHeightConstraint = NSLayoutConstraint(item: calendar,
+                                                      attribute: .height,
+                                                      relatedBy: .equal,
+                                                      toItem: nil,
+                                                      attribute: .notAnAttribute,
+                                                      multiplier: 1,
+                                                      constant: 300)
         calendar.addConstraint(calendarHeightConstraint)
         
         NSLayoutConstraint.activate([
