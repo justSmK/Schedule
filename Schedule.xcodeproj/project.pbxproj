@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		1D37400658FAA0BFFD32F331 /* Pods_Schedule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDD0F14B7786CC0428B58799 /* Pods_Schedule.framework */; };
 		78B637E61AC5D2659BF444BD /* Pods_Schedule_ScheduleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01BEB4B8F2F89B3BB18B11D0 /* Pods_Schedule_ScheduleUITests.framework */; };
+		BB498CEE27A4400800F3009F /* AlertDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB498CED27A4400800F3009F /* AlertDate.swift */; };
+		BB498CF027A45F3B00F3009F /* AlertTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB498CEF27A45F3B00F3009F /* AlertTime.swift */; };
+		BB498CF227A460D200F3009F /* AlertForCellName.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB498CF127A460D200F3009F /* AlertForCellName.swift */; };
+		BB498CF427A4636300F3009F /* ScheduleColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB498CF327A4636300F3009F /* ScheduleColorViewController.swift */; };
+		BB498CF627A463AE00F3009F /* TeachersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB498CF527A463AE00F3009F /* TeachersViewController.swift */; };
 		BB6E73C1279C5B700013CC33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E73C0279C5B700013CC33 /* AppDelegate.swift */; };
 		BB6E73C3279C5B700013CC33 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E73C2279C5B700013CC33 /* SceneDelegate.swift */; };
 		BB6E73C5279C5B700013CC33 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E73C4279C5B700013CC33 /* MainTabBarController.swift */; };
@@ -57,6 +62,11 @@
 		8F643F4BBA23BCC458963D5A /* Pods-Schedule.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule.debug.xcconfig"; path = "Target Support Files/Pods-Schedule/Pods-Schedule.debug.xcconfig"; sourceTree = "<group>"; };
 		97F18A7D496EBDC5892DBFEF /* Pods-Schedule.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule.release.xcconfig"; path = "Target Support Files/Pods-Schedule/Pods-Schedule.release.xcconfig"; sourceTree = "<group>"; };
 		A2B8686F63228B768FFAAAF0 /* Pods-Schedule-ScheduleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Schedule-ScheduleUITests.debug.xcconfig"; path = "Target Support Files/Pods-Schedule-ScheduleUITests/Pods-Schedule-ScheduleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		BB498CED27A4400800F3009F /* AlertDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDate.swift; sourceTree = "<group>"; };
+		BB498CEF27A45F3B00F3009F /* AlertTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTime.swift; sourceTree = "<group>"; };
+		BB498CF127A460D200F3009F /* AlertForCellName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertForCellName.swift; sourceTree = "<group>"; };
+		BB498CF327A4636300F3009F /* ScheduleColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleColorViewController.swift; sourceTree = "<group>"; };
+		BB498CF527A463AE00F3009F /* TeachersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachersViewController.swift; sourceTree = "<group>"; };
 		BB6E73BD279C5B700013CC33 /* Schedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Schedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB6E73C0279C5B700013CC33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB6E73C2279C5B700013CC33 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -233,6 +243,16 @@
 			path = Contacts;
 			sourceTree = "<group>";
 		};
+		BB70FCA827A43FC300FE399D /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				BB498CED27A4400800F3009F /* AlertDate.swift */,
+				BB498CEF27A45F3B00F3009F /* AlertTime.swift */,
+				BB498CF127A460D200F3009F /* AlertForCellName.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		BB773B9227A4274E0062CD34 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +266,7 @@
 			children = (
 				BBFD29E5279C5EF600CDA924 /* ScheduleViewController.swift */,
 				BB773B9527A42B280062CD34 /* OptionsScheduleTableViewController.swift */,
+				BB498CF327A4636300F3009F /* ScheduleColorViewController.swift */,
 			);
 			path = Schedule;
 			sourceTree = "<group>";
@@ -262,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				BBFD29E9279C5F5400CDA924 /* ContactsViewController.swift */,
+				BB498CF527A463AE00F3009F /* TeachersViewController.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -269,6 +291,7 @@
 		BBB81C2D279C636100E5442A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BB70FCA827A43FC300FE399D /* Alert */,
 				BBB81C2E279C637000E5442A /* Cell */,
 			);
 			path = Model;
@@ -550,13 +573,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB498CEE27A4400800F3009F /* AlertDate.swift in Sources */,
 				BB6E73C5279C5B700013CC33 /* MainTabBarController.swift in Sources */,
 				BBB81C30279C63A100E5442A /* ScheduleTableViewCell.swift in Sources */,
 				BB6E73C1279C5B700013CC33 /* AppDelegate.swift in Sources */,
 				BBB81C35279C6B3D00E5442A /* UIStackView.swift in Sources */,
+				BB498CF627A463AE00F3009F /* TeachersViewController.swift in Sources */,
+				BB498CF227A460D200F3009F /* AlertForCellName.swift in Sources */,
 				BBB81C37279C73AD00E5442A /* UILabel.swift in Sources */,
 				BBFD29E8279C5F1300CDA924 /* TasksViewController.swift in Sources */,
 				BB6E73C3279C5B700013CC33 /* SceneDelegate.swift in Sources */,
+				BB498CF027A45F3B00F3009F /* AlertTime.swift in Sources */,
 				BBFD29E6279C5EF600CDA924 /* ScheduleViewController.swift in Sources */,
 				BBB81C3A279C770800E5442A /* UIFont.swift in Sources */,
 				BB70FCA727A4358300FE399D /* HeaderOptionsScheduleTableViewCell.swift in Sources */,
@@ -564,6 +591,7 @@
 				BB773B9127A3FD1E0062CD34 /* TasksTableViewCell.swift in Sources */,
 				BB70FCA227A430D300FE399D /* OptionsScheduleTableViewCell.swift in Sources */,
 				BB773B9427A427870062CD34 /* PressButtonProtocols.swift in Sources */,
+				BB498CF427A4636300F3009F /* ScheduleColorViewController.swift in Sources */,
 				BB773B9627A42B280062CD34 /* OptionsScheduleTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,7 @@ class OptionsScheduleTableViewController: UITableViewController {
         tableView.dataSource = self
         tableView.backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
         tableView.separatorStyle = .none
+        tableView.bounces = false
         tableView.register(OptionsScheduleTableViewCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
         tableView.register(HeaderOptionsScheduleTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader)
         
@@ -57,5 +58,37 @@ class OptionsScheduleTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath) as! OptionsScheduleTableViewCell
+        
+        switch indexPath {
+        case [0, 0]: alertDate(label: cell.nameCellLabel) { (numberWeekday, date) in
+            print(numberWeekday, date)
+        }
+        case [0, 1]: alertTime(label: cell.nameCellLabel) { (date) in
+            print(date)
+        }
+            
+        case [1, 0]: alertForCellName(label: cell.nameCellLabel, name: "Name Lesson", placeHolder: "Enter name lesson")
+        case [1, 1]: alertForCellName(label: cell.nameCellLabel, name: "Type lesson", placeHolder: "Enter type lesson")
+        case [1, 2]: alertForCellName(label: cell.nameCellLabel, name: "Building number", placeHolder: "Enter number of building")
+        case [1, 3]: alertForCellName(label: cell.nameCellLabel, name: "Auidience number", placeHolder: "Enter number of auidience")
+            
+        case [2, 0]: pushControllers(vc: TeachersViewController())
+            
+            
+        case [3, 0]: pushControllers(vc: ScheduleColorViewController())
+            
+        default: print("Tap OptionsTableView")
+        }
+    }
+    
+    func pushControllers(vc: UIViewController) {
+        let viewController = vc
+        navigationController?.navigationBar.topItem?.title = "Options"
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
