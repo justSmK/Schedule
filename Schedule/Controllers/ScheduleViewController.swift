@@ -31,6 +31,7 @@ class ScheduleViewController: UIViewController {
     
     let tableView: UITableView = {
        let tableView = UITableView()
+        tableView.bounces = false //упругость интерфейса
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -101,20 +102,12 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: idScheduleCell, for: indexPath) as! ScheduleTableViewCell
         
-        switch indexPath.row {
-        case 0: cell.backgroundColor = .orange
-        case 1: cell.backgroundColor = .blue
-        default: cell.backgroundColor = .green
-        }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
-    
-    
 }
 
 //MARK: FSCalendarDataSource, FSCalendarDelegate
@@ -150,7 +143,6 @@ extension ScheduleViewController {
         ])
         
         view.addSubview(showHideButton)
-        
         NSLayoutConstraint.activate([
             showHideButton.topAnchor.constraint(equalTo: calendar.bottomAnchor, constant: 0),
             showHideButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
@@ -160,7 +152,6 @@ extension ScheduleViewController {
         
         
         view.addSubview(tableView)
-        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: showHideButton.bottomAnchor, constant: 10),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
