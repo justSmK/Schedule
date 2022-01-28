@@ -14,7 +14,7 @@ class ScheduleTableViewCell: UITableViewCell {
     let lessonTime = UILabel(text: "08:00", font: .avenirNextDemiBold20(), alignment: .left)
     let typeLabel = UILabel(text: "Type:", font: .avenirNext14(), alignment: .right)
     let lessonType = UILabel(text: "Lection", font: .avenirNextDemiBold14(), alignment: .left)
-    let buildingLabel = UILabel(text: "Num of build", font: .avenirNext14(), alignment: .right)
+    let buildingLabel = UILabel(text: "Building", font: .avenirNext14(), alignment: .right)
     let lessonBuilding = UILabel(text: "1", font: .avenirNextDemiBold14(), alignment: .left)
     let audienceLabel = UILabel(text: "Audience:", font: .avenirNext14(), alignment: .right)
     let lessonAudience = UILabel(text: "101", font: .avenirNextDemiBold14(), alignment: .left)

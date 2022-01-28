@@ -33,7 +33,7 @@ class MainTabBarController: UITabBarController {
         tabBar.layer.shadowOffset = CGSize.zero
         tabBar.layer.shadowRadius = 5
         
-        self.tabBar.backgroundColor = UIColor.white
+        self.tabBar.backgroundColor = UIColor.systemBackground
     }
 
     func createNavController(vc: UIViewController, itemName: String, ItemImage: String) -> UINavigationController {
