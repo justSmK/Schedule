@@ -1,5 +1,5 @@
 //
-//  ColorScheduleTableViewCell.swift
+//  OptionsTasksTableViewCell.swift
 //  Schedule
 //
 //  Created by justSmK on 31.01.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ColorScheduleTableViewCell: UITableViewCell {
+class OptionsTasksTableViewCell: UITableViewCell {
     
     let backgroundViewCell: UIView = {
         let view = UIView()
@@ -16,6 +16,18 @@ class ColorScheduleTableViewCell: UITableViewCell {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    let nameCellLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let cellNameArray = ["Date",
+                         "Lesson",
+                         "Task",
+                         ""]
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,18 +42,12 @@ class ColorScheduleTableViewCell: UITableViewCell {
     }
     
     func cellConfigure(indexPath: IndexPath) {
-
-        switch indexPath.section {
-        case 0: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-        case 1: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
-        case 2: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
-        case 3: backgroundViewCell.backgroundColor = #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1)
-        case 4: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
-        case 5: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
-        case 6: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1)
-        default:
-            backgroundViewCell.backgroundColor = .black
+        nameCellLabel.text = cellNameArray[indexPath.section]
+        
+        if indexPath == [3, 0] {
+            backgroundViewCell.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
         }
+
     }
     
     func setConstraints() {
@@ -51,6 +57,12 @@ class ColorScheduleTableViewCell: UITableViewCell {
             backgroundViewCell.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             backgroundViewCell.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             backgroundViewCell.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -1)
+        ])
+        
+        self.addSubview(nameCellLabel)
+        NSLayoutConstraint.activate([
+            nameCellLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            nameCellLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 15)
         ])
         
     }

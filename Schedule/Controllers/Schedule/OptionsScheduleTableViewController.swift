@@ -88,7 +88,7 @@ class OptionsScheduleTableViewController: UITableViewController {
         case [2, 0]: pushControllers(vc: TeachersViewController())
             
             
-        case [3, 0]: pushControllers(vc: ScheduleColorViewController())
+        case [3, 0]: pushControllers(vc: ScheduleColorTableViewController())
             
         default: print("Tap OptionsTableView")
         }

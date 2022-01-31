@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ScheduleColorViewController: UITableViewController {
+class ScheduleColorTableViewController: UITableViewController {
     
     let idOptionsColorCell = "idOptionsColorCell"
     let idOptionsScheduleHeader = "idOptionsScheduleHeader"
@@ -28,7 +28,7 @@ class ScheduleColorViewController: UITableViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
         tableView.separatorStyle = .none
         tableView.bounces = false
-        tableView.register(ColorScheduleTableViewCell.self, forCellReuseIdentifier: idOptionsColorCell)
+        tableView.register(ColorTableViewCell.self, forCellReuseIdentifier: idOptionsColorCell)
         tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader)
         
         title = "Color Schedule"
@@ -44,7 +44,7 @@ class ScheduleColorViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsColorCell, for: indexPath) as! ColorScheduleTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsColorCell, for: indexPath) as! ColorTableViewCell
         cell.cellConfigure(indexPath: indexPath)
         return cell
     }
