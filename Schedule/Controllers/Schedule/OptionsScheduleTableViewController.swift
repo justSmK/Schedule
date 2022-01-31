@@ -12,6 +12,12 @@ class OptionsScheduleTableViewController: UITableViewController {
     let idOptionsScheduleCell = "idOptionsScheduleCell"
     let idOptionsScheduleHeader = "idOptionsScheduleHeader"
     
+    let headerNameArray = ["DATE AND TIME",
+                           "LESSON",
+                           "TEACHER",
+                           "COLOR",
+                           "PERIOD"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,9 +27,10 @@ class OptionsScheduleTableViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.bounces = false
         tableView.register(OptionsScheduleTableViewCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
-        tableView.register(HeaderOptionsScheduleTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader)
+        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader)
         
         title = "Option Schedule"
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,6 +43,7 @@ class OptionsScheduleTableViewController: UITableViewController {
         case 1: return 4
         case 2: return 1
         case 3: return 1
+        case 4: return 1
         default: return 1
         }
     }
@@ -51,13 +59,13 @@ class OptionsScheduleTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idOptionsScheduleHeader) as! HeaderOptionsScheduleTableViewCell
-        header.headerConfigure(section: section)
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idOptionsScheduleHeader) as! HeaderOptionsTableViewCell
+        header.headerConfigure(nameArray: headerNameArray, section: section)
         return header
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 24
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
