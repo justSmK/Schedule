@@ -1,18 +1,18 @@
 //
-//  TasksColorTableViewController.swift
+//  ScheduleColorsTableViewControlle.swift
 //  Schedule
 //
-//  Created by justSmK on 31.01.2022.
+//  Created by justSmK on 28.01.2022.
 //
 
 import UIKit
 
-class TasksColorViewController: UITableViewController {
+class ScheduleColorsTableViewController: UITableViewController {
     
-    let idTasksColorCell = "idTasksColorCell"
-    let idTasksScheduleHeader = "idTasksScheduleHeader"
+    private let idOptionsColorCell = "idOptionsColorCell"
+    private let idOptionsScheduleHeader = "idOptionsScheduleHeader"
     
-    let headerNameArray = ["RED",
+    private let headerNameArray = ["RED",
                            "ORANGE",
                            "YELLOW",
                            "GREEN",
@@ -28,10 +28,10 @@ class TasksColorViewController: UITableViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
         tableView.separatorStyle = .none
         tableView.bounces = false
-        tableView.register(ColorTableViewCell.self, forCellReuseIdentifier: idTasksColorCell)
-        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idTasksScheduleHeader)
+        tableView.register(ColorsTableViewCell.self, forCellReuseIdentifier: idOptionsColorCell)
+        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader)
         
-        title = "Color Tasks"
+        title = "Colors Schedule"
         
     }
     
@@ -44,7 +44,7 @@ class TasksColorViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idTasksColorCell, for: indexPath) as! ColorTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsColorCell, for: indexPath) as! ColorsTableViewCell
         cell.cellConfigure(indexPath: indexPath)
         return cell
     }
@@ -54,7 +54,7 @@ class TasksColorViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idTasksScheduleHeader) as! HeaderOptionsTableViewCell
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idOptionsScheduleHeader) as! HeaderOptionsTableViewCell
         header.headerConfigure(nameArray: headerNameArray, section: section)
         return header
     }
@@ -68,6 +68,5 @@ class TasksColorViewController: UITableViewController {
     }
     
 }
-
 
 

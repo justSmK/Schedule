@@ -1,5 +1,5 @@
 //
-//  ColorScheduleTableViewCell.swift
+//  ColorsTableViewCel.swift
 //  Schedule
 //
 //  Created by justSmK on 31.01.2022.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ColorTableViewCell: UITableViewCell {
+class ColorsTableViewCell: UITableViewCell {
     
-    let backgroundViewCell: UIView = {
+    private let backgroundViewCell: UIView = {
         let view = UIView()
         view.backgroundColor = .white
         view.layer.cornerRadius = 10

@@ -1,5 +1,5 @@
 //
-//  OptionsContactsTableViewController.swift
+//  ContactsOptionsTableViewController.swift
 //  Schedule
 //
 //  Created by justSmK on 31.01.2022.
@@ -7,18 +7,18 @@
 
 import UIKit
 
-class OptionsContactsTableViewController: UITableViewController {
+class ContactsOptionsTableViewController: UITableViewController {
     
-    let idOptionsContactsCell = "idOptionsContactsCell"
-    let idOptionsContactsHeader = "idOptionsContactsHeader"
+    private let idOptionsContactsCell = "idOptionsContactsCell"
+    private let idOptionsContactsHeader = "idOptionsContactsHeader"
     
-    let headerNameArray = ["NAME",
+    private let headerNameArray = ["NAME",
                            "PHONE",
                            "MAIL",
                            "TYPE",
                            "CHOOSE IMAGE"]
     
-    let cellNameArray = ["Name", "Phone", "Mail", "Type", ""]
+    private let cellNameArray = ["Name", "Phone", "Mail", "Type", ""]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,14 +82,14 @@ class OptionsContactsTableViewController: UITableViewController {
         }
     }
     
-    func pushControllers(vc: UIViewController) {
+    private func pushControllers(vc: UIViewController) {
         let viewController = vc
         navigationController?.navigationBar.topItem?.title = "Options"
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
-extension OptionsContactsTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension ContactsOptionsTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     func chooseImagePicker(source: UIImagePickerController.SourceType) {
         if UIImagePickerController.isSourceTypeAvailable(source) {

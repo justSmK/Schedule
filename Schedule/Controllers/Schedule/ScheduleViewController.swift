@@ -10,7 +10,7 @@ import FSCalendar
 
 class ScheduleViewController: UIViewController {
 
-    var calendarHeightConstraint: NSLayoutConstraint!
+    private var calendarHeightConstraint: NSLayoutConstraint!
     
     private var calendar: FSCalendar = {
         let calendar = FSCalendar()
@@ -18,7 +18,7 @@ class ScheduleViewController: UIViewController {
         return calendar
     }()
     
-    let showHideButton: UIButton = {
+    private let showHideButton: UIButton = {
         let button = UIButton()
         
         button.setTitle("Open calendar", for: .normal)
@@ -29,14 +29,14 @@ class ScheduleViewController: UIViewController {
         
     }()
     
-    let tableView: UITableView = {
+    private let tableView: UITableView = {
        let tableView = UITableView()
         tableView.bounces = false //упругость интерфейса
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
-    let idScheduleCell = "idScheduleCell"
+    private let idScheduleCell = "idScheduleCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,12 +65,12 @@ class ScheduleViewController: UIViewController {
         
     }
     
-    @objc func AddButtonTapped() {
-        let scheduleOption = OptionsScheduleTableViewController()
+    @objc private func AddButtonTapped() {
+        let scheduleOption = ScheduleOptionsTableViewController()
         navigationController?.pushViewController(scheduleOption, animated: true)
     }
     
-    @objc func showHideButtonTapped() {
+    @objc private func showHideButtonTapped() {
         if calendar.scope == .week {
             calendar.setScope(.month, animated: true)
             showHideButton.setTitle("Close calendar", for: .normal)
@@ -83,7 +83,7 @@ class ScheduleViewController: UIViewController {
     
     //MARK: SwipeGestureRecognizer
     
-    func swipeAction() {
+    private func swipeAction() {
         let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
         swipeUp.direction = .up
         calendar.addGestureRecognizer(swipeUp)
@@ -93,7 +93,7 @@ class ScheduleViewController: UIViewController {
         calendar.addGestureRecognizer(swipeDown)
     }
     
-    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) {
+    @objc private func handleSwipe(gesture: UISwipeGestureRecognizer) {
         switch gesture.direction {
         case .up: showHideButtonTapped()
         case .down: showHideButtonTapped()
@@ -101,7 +101,6 @@ class ScheduleViewController: UIViewController {
             break
         }
     }
-    
 }
 
 //MARK: UITableViewDelegate, UITableViewDataSource
@@ -135,9 +134,7 @@ extension ScheduleViewController: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         print(date)
     }
-    
 }
-
 
 //MARK: SetConstraints
 
@@ -145,7 +142,6 @@ extension ScheduleViewController {
     func setConstraints() {
         
         view.addSubview(calendar)
-        
         calendarHeightConstraint = NSLayoutConstraint(item: calendar,
                                                       attribute: .height,
                                                       relatedBy: .equal,
@@ -169,7 +165,6 @@ extension ScheduleViewController {
             showHideButton.heightAnchor.constraint(equalToConstant: 20)
         ])
         
-        
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: showHideButton.bottomAnchor, constant: 10),
@@ -177,7 +172,6 @@ extension ScheduleViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         ])
-        
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  OptionsTasksTableViewController.swift
+//  TasksOptionsTableViewController.swift
 //  Schedule
 //
 //  Created by justSmK on 31.01.2022.
@@ -7,17 +7,17 @@
 
 import UIKit
 
-class OptionsTasksTableViewController: UITableViewController {
+class TasksOptionsTableViewController: UITableViewController {
     
-    let idOptionsTasksCell = "idOptionsTasksCell"
-    let idOptionsTasksHeader = "idOptionsTasksHeader"
+    private let idOptionsTasksCell = "idOptionsTasksCell"
+    private let idOptionsTasksHeader = "idOptionsTasksHeader"
     
-    let headerNameArray = ["DATE",
+    private let headerNameArray = ["DATE",
                            "LESSON",
                            "TASK",
                            "COLOR"]
     
-    let cellNameArray = ["Date",
+    private let cellNameArray = ["Date",
                          "Lesson",
                          "Task",
                          ""]
@@ -76,13 +76,13 @@ class OptionsTasksTableViewController: UITableViewController {
             
         case 1: alertForCellName(label: cell.nameCellLabel, name: "Name Lesson", placeHolder: "Enter name lesson")
         case 2: alertForCellName(label: cell.nameCellLabel, name: "Name Task", placeHolder: "Enter name task")
-        case 3: pushControllers(vc: TasksColorViewController())
+        case 3: pushControllers(vc: TasksColorsTableViewController())
             
         default: print("Tap OptionsTableView")
         }
     }
     
-    func pushControllers(vc: UIViewController) {
+    private func pushControllers(vc: UIViewController) {
         let viewController = vc
         navigationController?.navigationBar.topItem?.title = "Options"
         navigationController?.pushViewController(viewController, animated: true)

@@ -1,5 +1,5 @@
 //
-//  HeaderOptionsScheduleTableViewCell.swift
+//  HeaderOptionsTableViewCell.swift
 //  Schedule
 //
 //  Created by justSmK on 28.01.2022.
@@ -9,7 +9,7 @@ import UIKit
 
 class HeaderOptionsTableViewCell: UITableViewHeaderFooterView {
     
-    let headerLabel = UILabel(text: "", font: .avenirNext14(), alignment: .left)
+    private let headerLabel = UILabel(text: "", font: .avenirNext14(), alignment: .left)
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

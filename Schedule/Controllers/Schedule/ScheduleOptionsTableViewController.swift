@@ -1,5 +1,5 @@
 //
-//  OptionsScheduleViewController.swift
+//  ScheduleOptionsTableViewController.swift
 //  Schedule
 //
 //  Created by justSmK on 28.01.2022.
@@ -7,18 +7,18 @@
 
 import UIKit
 
-class OptionsScheduleTableViewController: UITableViewController {
+class ScheduleOptionsTableViewController: UITableViewController {
     
-    let idOptionsScheduleCell = "idOptionsScheduleCell"
-    let idOptionsScheduleHeader = "idOptionsScheduleHeader"
+    private let idOptionsScheduleCell = "idOptionsScheduleCell"
+    private let idOptionsScheduleHeader = "idOptionsScheduleHeader"
     
-    let headerNameArray = ["DATE AND TIME",
+    private let headerNameArray = ["DATE AND TIME",
                            "LESSON",
                            "TEACHER",
                            "COLOR",
                            "PERIOD"]
     
-    let cellNameArray = [["Date", "Time"],
+    private let cellNameArray = [["Date", "Time"],
                          ["Name", "Type", "Building", "Audience"],
                          ["Teacher Name"],
                          [""],
@@ -35,7 +35,7 @@ class OptionsScheduleTableViewController: UITableViewController {
         tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
         tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader)
         
-        title = "Option Schedule"
+        title = "Options Schedule"
         
     }
     
@@ -85,22 +85,17 @@ class OptionsScheduleTableViewController: UITableViewController {
         case [0, 1]: alertTime(label: cell.nameCellLabel) { (date) in
             print(date)
         }
-            
         case [1, 0]: alertForCellName(label: cell.nameCellLabel, name: "Name Lesson", placeHolder: "Enter name lesson")
         case [1, 1]: alertForCellName(label: cell.nameCellLabel, name: "Type lesson", placeHolder: "Enter type lesson")
         case [1, 2]: alertForCellName(label: cell.nameCellLabel, name: "Building number", placeHolder: "Enter number of building")
         case [1, 3]: alertForCellName(label: cell.nameCellLabel, name: "Auidience number", placeHolder: "Enter number of auidience")
-            
         case [2, 0]: pushControllers(vc: TeachersViewController())
-            
-            
-        case [3, 0]: pushControllers(vc: ScheduleColorTableViewController())
-            
+        case [3, 0]: pushControllers(vc: ScheduleColorsTableViewController())
         default: print("Tap OptionsTableView")
         }
     }
     
-    func pushControllers(vc: UIViewController) {
+    private func pushControllers(vc: UIViewController) {
         let viewController = vc
         navigationController?.navigationBar.topItem?.title = "Options"
         navigationController?.pushViewController(viewController, animated: true)
