@@ -297,8 +297,8 @@
 			isa = PBXGroup;
 			children = (
 				BBFD29E9279C5F5400CDA924 /* ContactsTableViewController.swift */,
-				BB498CF527A463AE00F3009F /* TeachersViewController.swift */,
 				BBC32E4A27A87AD7003D5A54 /* OptionsContactsTableViewController.swift */,
+				BB498CF527A463AE00F3009F /* TeachersViewController.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
