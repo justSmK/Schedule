@@ -59,10 +59,10 @@ class TasksViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
-                                                            action: #selector(AddButtonTapped))
+                                                            action: #selector(addButtonTapped))
     }
     
-    @objc private func AddButtonTapped() {
+    @objc private func addButtonTapped() {
         let tasksOption = TasksOptionsTableViewController()
         navigationController?.pushViewController(tasksOption, animated: true)
     }

@@ -40,7 +40,7 @@ class ScheduleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         view.backgroundColor = .white
         title = "Schedule"
         
@@ -59,13 +59,13 @@ class ScheduleViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
-                                                            action: #selector(AddButtonTapped))
+                                                            action: #selector(addButtonTapped))
         
         navigationController?.tabBarController?.tabBar.scrollEdgeAppearance = navigationController?.tabBarController?.tabBar.standardAppearance
         
     }
     
-    @objc private func AddButtonTapped() {
+    @objc private func addButtonTapped() {
         let scheduleOption = ScheduleOptionsTableViewController()
         navigationController?.pushViewController(scheduleOption, animated: true)
     }

@@ -74,8 +74,8 @@ class TasksOptionsTableViewController: UITableViewController {
             print(numberWeekday, date)
         }
             
-        case 1: alertForCellName(label: cell.nameCellLabel, name: "Name Lesson", placeHolder: "Enter name lesson")
-        case 2: alertForCellName(label: cell.nameCellLabel, name: "Name Task", placeHolder: "Enter name task")
+        case 1: alertForCellName(label: cell.nameCellLabel, name: "Name Lesson", placeHolder: "Enter name lesson") {text in print(text)}
+        case 2: alertForCellName(label: cell.nameCellLabel, name: "Name Task", placeHolder: "Enter name task") {text in print(text)}
         case 3: pushControllers(vc: TasksColorsTableViewController())
             
         default: print("Tap OptionsTableView")

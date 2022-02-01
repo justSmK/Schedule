@@ -27,6 +27,9 @@
 		BB773B9127A3FD1E0062CD34 /* TasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB773B9027A3FD1E0062CD34 /* TasksTableViewCell.swift */; };
 		BB773B9427A427870062CD34 /* PressButtonProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB773B9327A427870062CD34 /* PressButtonProtocols.swift */; };
 		BB773B9627A42B280062CD34 /* ScheduleOptionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB773B9527A42B280062CD34 /* ScheduleOptionsTableViewController.swift */; };
+		BB964F7A27A9C7BB00688ED2 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB964F7927A9C7BB00688ED2 /* ScheduleModel.swift */; };
+		BB964F7D27A9C9B600688ED2 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB964F7C27A9C9B600688ED2 /* RealmManager.swift */; };
+		BB964F7F27A9D90200688ED2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB964F7E27A9D90200688ED2 /* UIColor.swift */; };
 		BBB81C30279C63A100E5442A /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB81C2F279C63A100E5442A /* ScheduleTableViewCell.swift */; };
 		BBB81C35279C6B3D00E5442A /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB81C34279C6B3D00E5442A /* UIStackView.swift */; };
 		BBB81C37279C73AD00E5442A /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB81C36279C73AD00E5442A /* UILabel.swift */; };
@@ -91,6 +94,9 @@
 		BB773B9027A3FD1E0062CD34 /* TasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksTableViewCell.swift; sourceTree = "<group>"; };
 		BB773B9327A427870062CD34 /* PressButtonProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PressButtonProtocols.swift; sourceTree = "<group>"; };
 		BB773B9527A42B280062CD34 /* ScheduleOptionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleOptionsTableViewController.swift; sourceTree = "<group>"; };
+		BB964F7927A9C7BB00688ED2 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
+		BB964F7C27A9C9B600688ED2 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		BB964F7E27A9D90200688ED2 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		BBB81C2F279C63A100E5442A /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		BBB81C34279C6B3D00E5442A /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		BBB81C36279C73AD00E5442A /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
@@ -177,7 +183,8 @@
 			children = (
 				BB6E73F0279C5C6D0013CC33 /* Application */,
 				BB6E73F1279C5C800013CC33 /* Controllers */,
-				BBB81C2D279C636100E5442A /* Model */,
+				BBB81C2D279C636100E5442A /* Models */,
+				BB964F7B27A9C98C00688ED2 /* Services */,
 				BBB81C31279C6B0600E5442A /* Extentions */,
 				BB773B9227A4274E0062CD34 /* Protocols */,
 				BB6E73F2279C5C930013CC33 /* Resources */,
@@ -309,18 +316,27 @@
 		BB964F7827A9C5C200688ED2 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				BB964F7927A9C7BB00688ED2 /* ScheduleModel.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
 		};
-		BBB81C2D279C636100E5442A /* Model */ = {
+		BB964F7B27A9C98C00688ED2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BB964F7C27A9C9B600688ED2 /* RealmManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BBB81C2D279C636100E5442A /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				BB964F7827A9C5C200688ED2 /* Realm */,
 				BB70FCA827A43FC300FE399D /* Alert */,
 				BBB81C2E279C637000E5442A /* Cell */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		BBB81C2E279C637000E5442A /* Cell */ = {
@@ -350,6 +366,7 @@
 				BBB81C34279C6B3D00E5442A /* UIStackView.swift */,
 				BBB81C36279C73AD00E5442A /* UILabel.swift */,
 				BBB81C39279C770800E5442A /* UIFont.swift */,
+				BB964F7E27A9D90200688ED2 /* UIColor.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -610,15 +627,18 @@
 				BBC32E4B27A87AD7003D5A54 /* ContactsOptionsTableViewController.swift in Sources */,
 				BB6E73C1279C5B700013CC33 /* AppDelegate.swift in Sources */,
 				BBECC3C727A86CFC00F16BAA /* TasksColorsTableViewController.swift in Sources */,
+				BB964F7A27A9C7BB00688ED2 /* ScheduleModel.swift in Sources */,
 				BBB81C35279C6B3D00E5442A /* UIStackView.swift in Sources */,
 				BB498CF627A463AE00F3009F /* TeachersViewController.swift in Sources */,
 				BBC32E4927A873A9003D5A54 /* ContactsTableViewCell.swift in Sources */,
 				BBECC3C327A867F900F16BAA /* TasksOptionsTableViewController.swift in Sources */,
 				BBD9C05127A9B78200B24737 /* AlertPhotoCamera.swift in Sources */,
+				BB964F7D27A9C9B600688ED2 /* RealmManager.swift in Sources */,
 				BB498CF227A460D200F3009F /* AlertForCellName.swift in Sources */,
 				BBB81C37279C73AD00E5442A /* UILabel.swift in Sources */,
 				BBFD29E8279C5F1300CDA924 /* TasksViewController.swift in Sources */,
 				BB6E73C3279C5B700013CC33 /* SceneDelegate.swift in Sources */,
+				BB964F7F27A9D90200688ED2 /* UIColor.swift in Sources */,
 				BB498CF027A45F3B00F3009F /* AlertTime.swift in Sources */,
 				BBFD29E6279C5EF600CDA924 /* ScheduleViewController.swift in Sources */,
 				BBB81C3A279C770800E5442A /* UIFont.swift in Sources */,
