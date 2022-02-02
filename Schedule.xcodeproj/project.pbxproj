@@ -30,6 +30,7 @@
 		BB964F7A27A9C7BB00688ED2 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB964F7927A9C7BB00688ED2 /* ScheduleModel.swift */; };
 		BB964F7D27A9C9B600688ED2 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB964F7C27A9C9B600688ED2 /* RealmManager.swift */; };
 		BB964F7F27A9D90200688ED2 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB964F7E27A9D90200688ED2 /* UIColor.swift */; };
+		BBA2E9A227AADFEE00ACA2D4 /* AlertOK.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBA2E9A127AADFEE00ACA2D4 /* AlertOK.swift */; };
 		BBB81C30279C63A100E5442A /* ScheduleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB81C2F279C63A100E5442A /* ScheduleTableViewCell.swift */; };
 		BBB81C35279C6B3D00E5442A /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB81C34279C6B3D00E5442A /* UIStackView.swift */; };
 		BBB81C37279C73AD00E5442A /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB81C36279C73AD00E5442A /* UILabel.swift */; };
@@ -97,6 +98,7 @@
 		BB964F7927A9C7BB00688ED2 /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		BB964F7C27A9C9B600688ED2 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		BB964F7E27A9D90200688ED2 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		BBA2E9A127AADFEE00ACA2D4 /* AlertOK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertOK.swift; sourceTree = "<group>"; };
 		BBB81C2F279C63A100E5442A /* ScheduleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTableViewCell.swift; sourceTree = "<group>"; };
 		BBB81C34279C6B3D00E5442A /* UIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		BBB81C36279C73AD00E5442A /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 				BB498CF127A460D200F3009F /* AlertForCellName.swift */,
 				BBD9C04E27A9B13C00B24737 /* AlertFriendOrTeacher.swift */,
 				BBD9C05027A9B78200B24737 /* AlertPhotoCamera.swift */,
+				BBA2E9A127AADFEE00ACA2D4 /* AlertOK.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				BB70FCA227A430D300FE399D /* OptionsTableViewCell.swift in Sources */,
 				BB773B9427A427870062CD34 /* PressButtonProtocols.swift in Sources */,
 				BB498CF427A4636300F3009F /* ScheduleColorsTableViewController.swift in Sources */,
+				BBA2E9A227AADFEE00ACA2D4 /* AlertOK.swift in Sources */,
 				BB773B9627A42B280062CD34 /* ScheduleOptionsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

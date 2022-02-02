@@ -17,7 +17,7 @@ extension UIViewController {
             
             let textFieldAlert = alert.textFields?.first
             guard let text = textFieldAlert?.text else { return }
-            label.text = text
+            label.text = (text != "" ? text : label.text)
             completionHandler(text)
         }
         

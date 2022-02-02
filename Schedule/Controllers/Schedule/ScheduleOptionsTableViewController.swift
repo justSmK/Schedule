@@ -47,6 +47,11 @@ class ScheduleOptionsTableViewController: UITableViewController {
     @objc private func saveButtonTapped() {
         RealmManager.shared.saveScheduleModel(model: scheduleModel)
         scheduleModel = ScheduleModel()
+        alertOK(title: "Success")
+        tableView.reloadRows(at: [[0, 0], [0, 1],
+                                  [1, 0], [1, 1], [1, 2], [1, 3],
+                                  [2, 0]],
+                             with: .none)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
