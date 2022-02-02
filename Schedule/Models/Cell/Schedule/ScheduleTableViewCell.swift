@@ -9,15 +9,15 @@ import UIKit
 
 class ScheduleTableViewCell: UITableViewCell {
     
-    let lessonName = UILabel(text: "Coding", font: .avenirNextDemiBold20(), alignment: .left)
-    let teacherName = UILabel(text: "Semko S.S.", font: .avenirNext20(), alignment: .right)
-    let lessonTime = UILabel(text: "08:00", font: .avenirNextDemiBold20(), alignment: .left)
+    let lessonName = UILabel(text: "", font: .avenirNextDemiBold20(), alignment: .left)
+    let teacherName = UILabel(text: "", font: .avenirNext20(), alignment: .right)
+    let lessonTime = UILabel(text: "", font: .avenirNextDemiBold20(), alignment: .left)
     let typeLabel = UILabel(text: "Type:", font: .avenirNext14(), alignment: .right)
-    let lessonType = UILabel(text: "Lection", font: .avenirNextDemiBold14(), alignment: .left)
+    let lessonType = UILabel(text: "", font: .avenirNextDemiBold14(), alignment: .left)
     let buildingLabel = UILabel(text: "Building", font: .avenirNext14(), alignment: .right)
-    let lessonBuilding = UILabel(text: "1", font: .avenirNextDemiBold14(), alignment: .left)
+    let lessonBuilding = UILabel(text: "", font: .avenirNextDemiBold14(), alignment: .left)
     let audienceLabel = UILabel(text: "Audience:", font: .avenirNext14(), alignment: .right)
-    let lessonAudience = UILabel(text: "101", font: .avenirNextDemiBold14(), alignment: .left)
+    let lessonAudience = UILabel(text: "", font: .avenirNextDemiBold14(), alignment: .left)
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -27,6 +27,21 @@ class ScheduleTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(model: ScheduleModel) {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        lessonName.text = model.scheduleName
+        teacherName.text = model.scheduleTeacher
+        guard let time = model.scheduleTime else { return }
+        lessonTime.text = dateFormatter.string(from: time)
+        lessonType.text = model.scheduleType
+        lessonBuilding.text = model.scheduleBuilding
+        lessonAudience.text = model.scheduleAudience
+        backgroundColor = UIColor().colorFromHex("\(model.scheduleColor)")
     }
     
     func setConstraints() {
