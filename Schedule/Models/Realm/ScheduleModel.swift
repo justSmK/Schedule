@@ -15,7 +15,7 @@ class ScheduleModel: Object {
     @Persisted var scheduleBuilding: String = ""
     @Persisted var scheduleAudience: String = ""
     @Persisted var scheduleTeacher: String = "Name Surname"
-    @Persisted var scheduleColor: String = "FFFFFF"
+    @Persisted var scheduleColor: String = "5E5CE6"
     @Persisted var scheduleRepeat: Bool = true
     @Persisted var scheduleWeekday: Int = 1
 }

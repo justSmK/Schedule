@@ -7,6 +7,7 @@
 
 import UIKit
 import FSCalendar
+import RealmSwift
 
 class ScheduleViewController: UIViewController {
 
@@ -37,6 +38,9 @@ class ScheduleViewController: UIViewController {
     }()
     
     private let idScheduleCell = "idScheduleCell"
+    
+    let localRealm = try! Realm()
+    var scheduleModel: Results<ScheduleModel>!
     
     override func viewDidLoad() {
         super.viewDidLoad()

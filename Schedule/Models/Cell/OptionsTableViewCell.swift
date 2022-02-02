@@ -25,13 +25,12 @@ class OptionsTableViewCell: UITableViewCell {
         return label
     }()
     
-    let repeateSwitch: UISwitch = {
-        let repeateSwitch = UISwitch()
-        repeateSwitch.isOn = true
-        repeateSwitch.isHidden = true
-        repeateSwitch.onTintColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        repeateSwitch.translatesAutoresizingMaskIntoConstraints = false
-        return repeateSwitch
+    let repeatSwitch: UISwitch = {
+        let repeatSwitch = UISwitch()
+        repeatSwitch.isOn = true
+        repeatSwitch.isHidden = true
+        repeatSwitch.translatesAutoresizingMaskIntoConstraints = false
+        return repeatSwitch
     }()
     
     weak var switchRepeatDelegate: SwitchRepeatProtocol?
@@ -41,7 +40,7 @@ class OptionsTableViewCell: UITableViewCell {
         self.selectionStyle = .none //выделение ячейки
         self.backgroundColor = .clear
         
-        repeateSwitch.addTarget(self, action: #selector(switchChange(paramTarget:)), for: .valueChanged)
+        repeatSwitch.addTarget(self, action: #selector(switchChange(paramTarget:)), for: .valueChanged)
         
         setConstraints()
     }
@@ -50,25 +49,17 @@ class OptionsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func cellScheduleConfigure(nameArray: [[String]], indexPath: IndexPath) {
+    func cellScheduleConfigure(nameArray: [[String]], indexPath: IndexPath, hexColor: String) {
         nameCellLabel.text = nameArray[indexPath.section][indexPath.row]
-        
-        if indexPath == [3, 0] {
-            backgroundViewCell.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        }
-        
-        if indexPath == [4, 0] {
-            repeateSwitch.isHidden = false
-        }
+        let color = UIColor().colorFromHex(hexColor)
+        backgroundViewCell.backgroundColor = (indexPath.section == 3 ? color : .white)
+        repeatSwitch.isHidden = (indexPath.section == 4 ? false : true)
+        repeatSwitch.onTintColor = color
     }
     
     func cellTasksConfigure(nameArray: [String], indexPath: IndexPath) {
         nameCellLabel.text = nameArray[indexPath.section]
-        
-        if indexPath == [3, 0] {
-            backgroundViewCell.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        }
-
+        backgroundViewCell.backgroundColor = (indexPath.section == 3 ? #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1) : .white)
     }
     
     func cellContactsConfigure(nameArray: [String], indexPath: IndexPath) {
@@ -96,10 +87,10 @@ class OptionsTableViewCell: UITableViewCell {
             nameCellLabel.leadingAnchor.constraint(equalTo: backgroundViewCell.leadingAnchor, constant: 15)
         ])
         
-        self.contentView.addSubview(repeateSwitch)
+        self.contentView.addSubview(repeatSwitch)
         NSLayoutConstraint.activate([
-            repeateSwitch.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            repeateSwitch.trailingAnchor.constraint(equalTo: backgroundViewCell.trailingAnchor, constant: -20)
+            repeatSwitch.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            repeatSwitch.trailingAnchor.constraint(equalTo: backgroundViewCell.trailingAnchor, constant: -20)
         ])
     }
 }

@@ -32,13 +32,13 @@ class ColorsTableViewCell: UITableViewCell {
     func cellConfigure(indexPath: IndexPath) {
 
         switch indexPath.section {
-        case 0: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-        case 1: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
+        case 0: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.1490196078, blue: 0, alpha: 1)
+        case 1: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1)
         case 2: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
-        case 3: backgroundViewCell.backgroundColor = #colorLiteral(red: 0, green: 0.9768045545, blue: 0, alpha: 1)
-        case 4: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
+        case 3: backgroundViewCell.backgroundColor = #colorLiteral(red: 0, green: 0.9764705882, blue: 0, alpha: 1)
+        case 4: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.01568627451, green: 0.2, blue: 1, alpha: 1)
         case 5: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
-        case 6: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.5791940689, green: 0.1280144453, blue: 0.5726861358, alpha: 1)
+        case 6: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.5803921569, green: 0.1294117647, blue: 0.5725490196, alpha: 1)
         default:
             backgroundViewCell.backgroundColor = .black
         }
