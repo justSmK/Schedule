@@ -11,7 +11,7 @@ class ContactsTableViewCell: UITableViewCell {
     
     let contactImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "contact")
+        imageView.image = UIImage(systemName: "person.fill")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +53,15 @@ class ContactsTableViewCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(model: ContactModel) {
+        nameLabel.text = model.contactName
+        phoneLabel.text = model.contactPhone
+        mailLabel.text = model.contactMail
+        
+        guard let data = model.contactImage, let image = UIImage(data: data) else { return }
+        contactImageView.image = image
     }
     
     func setConstraints() {

@@ -20,8 +20,13 @@ class ContactsOptionsTableViewController: UITableViewController {
     
     private let cellNameArray = ["Name", "Phone", "Mail", "Type", ""]
     
+    private var imageIsChanged = false
+    private var contactModel = ContactModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Option Schedule"
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -31,7 +36,45 @@ class ContactsOptionsTableViewController: UITableViewController {
         tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsContactsCell)
         tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsContactsHeader)
         
-        title = "Option Schedule"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
+    }
+    
+    @objc private func saveButtonTapped() {
+        
+        if contactModel.contactName == "Unknown" || contactModel.contactType == "Unknown" {
+            alertOK(title: "Error", message: "Required fields: Name, Type")
+        } else {
+            setImageModel()
+            
+            RealmManager.shared.saveContactModel(model: contactModel)
+            contactModel = ContactModel()
+            
+            alertOK(title: "Success", message: nil)
+            tableView.reloadData()
+        }
+        
+    }
+    
+    private func pushControllers(vc: UIViewController) {
+        let viewController = vc
+        navigationController?.navigationBar.topItem?.title = "Options"
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    @objc private func setImageModel() {
+        
+        if imageIsChanged {
+            let cell = tableView.cellForRow(at: [4, 0]) as! OptionsTableViewCell
+            
+            let image = cell.backgroundViewCell.image
+            guard let imageData = image?.pngData() else { return }
+            contactModel.contactImage = imageData
+            
+            cell.backgroundViewCell.contentMode = .scaleAspectFit
+            imageIsChanged = false
+        } else {
+            contactModel.contactImage = nil
+        }
         
     }
     
@@ -68,11 +111,17 @@ class ContactsOptionsTableViewController: UITableViewController {
         let cell = tableView.cellForRow(at: indexPath) as! OptionsTableViewCell
 
         switch indexPath.section {
-        case 0: alertForCellName(label: cell.nameCellLabel, name: "Name Contact", placeHolder: "Enter name contact") {text in print(text)}
-        case 1: alertForCellName(label: cell.nameCellLabel, name: "Phone} Contact", placeHolder: "Enter phone contact") {text in print(text)}
-        case 2: alertForCellName(label: cell.nameCellLabel, name: "Mail Contact", placeHolder: "Enter mail contact") {text in print(text)}
+        case 0: alertForCellName(label: cell.nameCellLabel, name: "Name Contact", placeHolder: "Enter name contact") {text in
+            self.contactModel.contactName = text
+        }
+        case 1: alertForCellName(label: cell.nameCellLabel, name: "Phone} Contact", placeHolder: "Enter phone contact") {text in
+            self.contactModel.contactPhone = text
+        }
+        case 2: alertForCellName(label: cell.nameCellLabel, name: "Mail Contact", placeHolder: "Enter mail contact") {text in
+            self.contactModel.contactMail = text
+        }
         case 3: alertFriendOrTeacher(label: cell.nameCellLabel) { (type) in
-            print(type)
+            self.contactModel.contactType = type
         }
         case 4: alertPhotoOrCamera { (source) in
             self.chooseImagePicker(source: source)
@@ -80,12 +129,6 @@ class ContactsOptionsTableViewController: UITableViewController {
             
         default: print("Tap ContactsTableView")
         }
-    }
-    
-    private func pushControllers(vc: UIViewController) {
-        let viewController = vc
-        navigationController?.navigationBar.topItem?.title = "Options"
-        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
@@ -104,10 +147,10 @@ extension ContactsOptionsTableViewController: UIImagePickerControllerDelegate, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         let cell = tableView.cellForRow(at: [4, 0]) as! OptionsTableViewCell
-        
         cell.backgroundViewCell.image = info[.editedImage] as? UIImage
         cell.backgroundViewCell.contentMode = .scaleAspectFill
         cell.backgroundViewCell.clipsToBounds = true
+        imageIsChanged = true
         dismiss(animated: true)
     }
 }
