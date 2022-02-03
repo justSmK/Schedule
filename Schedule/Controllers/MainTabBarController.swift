@@ -21,7 +21,7 @@ class MainTabBarController: UITabBarController {
         let tasksViewController = createNavController(vc: TasksViewController(),
                                                       itemName: "Tasks",
                                                       ItemImage: "text.badge.checkmark")
-        let contactsViewController = createNavController(vc: ContactsTableViewController(),
+        let contactsViewController = createNavController(vc: ContactsViewController(),
                                                          itemName: "Contacts",
                                                          ItemImage: "rectangle.stack.person.crop")
         
