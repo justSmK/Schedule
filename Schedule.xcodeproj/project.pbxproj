@@ -191,7 +191,7 @@
 				BB6E73F1279C5C800013CC33 /* Controllers */,
 				BBB81C2D279C636100E5442A /* Models */,
 				BB964F7B27A9C98C00688ED2 /* Services */,
-				BBB81C31279C6B0600E5442A /* Extentions */,
+				BBB81C31279C6B0600E5442A /* Extensions */,
 				BB773B9227A4274E0062CD34 /* Protocols */,
 				BB6E73F2279C5C930013CC33 /* Resources */,
 			);
@@ -361,12 +361,12 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		BBB81C31279C6B0600E5442A /* Extentions */ = {
+		BBB81C31279C6B0600E5442A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				BBB81C32279C6B1B00E5442A /* UIKit */,
 			);
-			path = Extentions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		BBB81C32279C6B1B00E5442A /* UIKit */ = {
