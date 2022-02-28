@@ -24,7 +24,7 @@ class TeachersTableViewController: UITableViewController {
         tableView.delegate = self
         tableView.register(ContactsTableViewCell.self, forCellReuseIdentifier: teacherId)
         
-        contactsArray = localRealm.objects(ContactModel.self).filter("contactsType = 'Teacher'")
+        contactsArray = localRealm.objects(ContactModel.self).filter("contactType = 'Teacher'")
     }
     
     private func setTeacher(teacher: String) {
