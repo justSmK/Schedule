@@ -53,7 +53,7 @@ class ContactsOptionsTableViewController: UITableViewController {
             
             cellNameArray = ["Name", "Phone", "Mail", "Type", ""]
             alertOK(title: "Success", message: nil)
-            tableView.reloadData()
+//            tableView.reloadData()
         } else {
             setImageModel()
             RealmManager.shared.updateContactModel(model: contactModel, nameArray: cellNameArray, imageData: dataImage)
@@ -137,7 +137,7 @@ class ContactsOptionsTableViewController: UITableViewController {
 //            self.contactModel.contactName = text
             self.cellNameArray[0] = text
         }
-        case 1: alertForCellName(label: cell.nameCellLabel, name: "Phone} Contact", placeHolder: "Enter phone contact") {text in
+        case 1: alertForCellName(label: cell.nameCellLabel, name: "Phone Contact", placeHolder: "Enter phone contact") {text in
 //            self.contactModel.contactPhone = text
             self.cellNameArray[1] = text
         }
