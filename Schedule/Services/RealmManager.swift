@@ -74,5 +74,18 @@ class RealmManager {
             model.contactImage = imageData
         }
     }
+    
+    func updateTaskModel(model: TaskModel, nameArray: [String], hexColor: String) {
+        try! localRealm.write {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            let dateString = dateFormatter.date(from: nameArray[0])
+            
+            model.taskDate = dateString
+            model.taskName = nameArray[1]
+            model.taskDescription = nameArray[2]
+            model.taskColor = hexColor
+        }
+    }
 
 }

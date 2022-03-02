@@ -76,6 +76,26 @@ class TasksViewController: UIViewController {
         navigationController?.pushViewController(tasksOption, animated: true)
     }
     
+    @objc private func editingModel(taskModel: TaskModel) {
+        let tasksOption = TasksOptionsTableViewController()
+        tasksOption.taskModel = taskModel
+        tasksOption.editModel = true
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateString = dateFormatter.string(from: taskModel.taskDate!)
+        
+        tasksOption.cellNameArray = [
+            dateString,
+            taskModel.taskName,
+            taskModel.taskDescription,
+            ""
+        ]
+        tasksOption.hexColorCell = taskModel.taskColor
+        
+        navigationController?.pushViewController(tasksOption, animated: true)
+    }
+    
     @objc private func showHideButtonTapped() {
         if calendar.scope == .week {
             calendar.setScope(.month, animated: true)
@@ -120,7 +140,7 @@ class TasksViewController: UIViewController {
     }
 }
 
-//MARK: UITableViewDelegate, UITableViewDataSource
+//MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension TasksViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -141,6 +161,11 @@ extension TasksViewController: UITableViewDelegate, UITableViewDataSource {
         return 80
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = tasksArray[indexPath.row]
+        editingModel(taskModel: model)
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let editingRow = tasksArray[indexPath.row]
@@ -153,7 +178,7 @@ extension TasksViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: PressReadyTaskButtonProtocol
+//MARK: - PressReadyTaskButtonProtocol
 
 extension TasksViewController: PressReadyTaskButtonProtocol {
     func readyButtonTapped(indexPath: IndexPath) {
@@ -164,7 +189,7 @@ extension TasksViewController: PressReadyTaskButtonProtocol {
     }
 }
 
-//MARK: FSCalendarDataSource, FSCalendarDelegate
+//MARK: - FSCalendarDataSource, FSCalendarDelegate
 
 extension TasksViewController: FSCalendarDataSource, FSCalendarDelegate {
     
@@ -178,7 +203,7 @@ extension TasksViewController: FSCalendarDataSource, FSCalendarDelegate {
     }
 }
 
-//MARK: SetConstraints
+//MARK: - SetConstraints
 
 extension TasksViewController {
     func setConstraints() {

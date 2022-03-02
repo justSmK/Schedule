@@ -40,7 +40,7 @@ class ColorsTableViewCell: UITableViewCell {
         case 5: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
         case 6: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.5803921569, green: 0.1294117647, blue: 0.5725490196, alpha: 1)
         default:
-            backgroundViewCell.backgroundColor = .black
+            backgroundViewCell.backgroundColor = .white
         }
     }
     

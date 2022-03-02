@@ -17,14 +17,12 @@ class TasksOptionsTableViewController: UITableViewController {
                            "TASK",
                            "COLOR"]
     
-    private let cellNameArray = ["Date",
-                         "Lesson",
-                         "Task",
-                         ""]
+    var cellNameArray = ["Date", "Lesson", "Task", ""]
     
-    var hexColorCell = "5E5CE6"
+    var hexColorCell = "FFFFFF"
     
-    private var taskModel = TaskModel()
+    var taskModel = TaskModel()
+    var editModel: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,16 +44,34 @@ class TasksOptionsTableViewController: UITableViewController {
     
     @objc private func saveButtonTapped() {
         
-        if taskModel.taskDate == nil || taskModel.taskName == "Unknown" {
+        if cellNameArray[0] == "Date" || cellNameArray[1] == "Lesson" {
             alertOK(title: "Error", message: "Required fields: Date, Lesson")
-        } else {
+        } else if editModel == false {
+            setModel()
             taskModel.taskColor = hexColorCell
             RealmManager.shared.saveTaskModel(model: taskModel)
             taskModel = TaskModel()
+            
+            cellNameArray = ["Date", "Lesson", "Task", ""]
+            
             alertOK(title: "Success", message: nil)
-            hexColorCell = "5E5CE6"
+            hexColorCell = "FFFFFF"
             tableView.reloadData()
+        } else {
+            RealmManager.shared.updateTaskModel(model: taskModel, nameArray: cellNameArray, hexColor: hexColorCell)
+            self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    private func setModel() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateString = dateFormatter.date(from: cellNameArray[0])
+        
+        taskModel.taskDate = dateString
+        taskModel.taskName = cellNameArray[1]
+        taskModel.taskDescription = cellNameArray[2]
+        taskModel.taskColor = cellNameArray[3]
     }
     
     private func pushControllers(vc: UIViewController) {
@@ -98,13 +114,19 @@ class TasksOptionsTableViewController: UITableViewController {
         
         switch indexPath.section {
         case 0: alertDate(label: cell.nameCellLabel) { (numberWeekday, date) in
-            self.taskModel.taskDate = date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            let dateString = dateFormatter.string(from: date)
+            self.cellNameArray[0] = dateString
+//            self.taskModel.taskDate = date
         }
         case 1: alertForCellName(label: cell.nameCellLabel, name: "Name Lesson", placeHolder: "Enter name lesson") {text in
-            self.taskModel.taskName = text
+//            self.taskModel.taskName = text
+            self.cellNameArray[1] = text
         }
         case 2: alertForCellName(label: cell.nameCellLabel, name: "Name Task", placeHolder: "Enter name task") {text in
-            self.taskModel.taskDescription = text
+//            self.taskModel.taskDescription = text
+            self.cellNameArray[2] = text
         }
         case 3: pushControllers(vc: TasksColorsTableViewController())
         default: print("Tap OptionsTableView")

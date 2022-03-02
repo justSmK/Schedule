@@ -12,13 +12,15 @@ class TasksColorsTableViewController: UITableViewController {
     private let idTasksColorCell = "idTasksColorCell"
     private let idTasksScheduleHeader = "idTasksScheduleHeader"
     
-    private let headerNameArray = ["RED",
-                           "ORANGE",
-                           "YELLOW",
-                           "GREEN",
-                           "BLUE",
-                           "INDIGO",
-                           "VIOLET"]
+    private let headerNameArray = [
+        "RED",
+        "ORANGE",
+        "YELLOW",
+        "GREEN",
+        "BLUE",
+        "INDIGO",
+        "VIOLET"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
