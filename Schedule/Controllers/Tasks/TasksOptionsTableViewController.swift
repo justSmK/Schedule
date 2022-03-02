@@ -12,12 +12,19 @@ class TasksOptionsTableViewController: UITableViewController {
     private let idOptionsTasksCell = "idOptionsTasksCell"
     private let idOptionsTasksHeader = "idOptionsTasksHeader"
     
-    private let headerNameArray = ["DATE",
-                           "LESSON",
-                           "TASK",
-                           "COLOR"]
+    private let headerNameArray = [
+        "DATE",
+        "LESSON",
+        "TASK",
+        "COLOR"
+    ]
     
-    var cellNameArray = ["Date", "Lesson", "Task", ""]
+    var cellNameArray = [
+        "Date",
+        "Lesson",
+        "Task",
+        ""
+    ]
     
     var hexColorCell = "FFFFFF"
     
@@ -34,18 +41,30 @@ class TasksOptionsTableViewController: UITableViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
         tableView.separatorStyle = .none
         tableView.bounces = false
-        tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsTasksCell)
-        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsTasksHeader)
+        tableView.register(
+            OptionsTableViewCell.self,
+            forCellReuseIdentifier: idOptionsTasksCell
+        )
+        tableView.register(
+            HeaderOptionsTableViewCell.self,
+            forHeaderFooterViewReuseIdentifier: idOptionsTasksHeader
+        )
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
-                                                            target: self,
-                                                            action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .save,
+            target: self,
+            action: #selector(saveButtonTapped)
+        )
     }
     
     @objc private func saveButtonTapped() {
         
-        if cellNameArray[0] == "Date" || cellNameArray[1] == "Lesson" {
-            alertOK(title: "Error", message: "Required fields: Date, Lesson")
+        if cellNameArray[0] == "Date" ||
+            cellNameArray[1] == "Lesson" {
+            alertOK(
+                title: "Error",
+                message: "Required fields: Date, Lesson"
+            )
         } else if editModel == false {
             setModel()
             taskModel.taskColor = hexColorCell
@@ -58,7 +77,11 @@ class TasksOptionsTableViewController: UITableViewController {
             hexColorCell = "FFFFFF"
             tableView.reloadData()
         } else {
-            RealmManager.shared.updateTaskModel(model: taskModel, nameArray: cellNameArray, hexColor: hexColorCell)
+            RealmManager.shared.updateTaskModel(
+                model: taskModel,
+                nameArray: cellNameArray,
+                hexColor: hexColorCell
+            )
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -89,8 +112,15 @@ class TasksOptionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsTasksCell, for: indexPath) as! OptionsTableViewCell
-        cell.cellTasksConfigure(nameArray: cellNameArray, indexPath: indexPath, hexColor: hexColorCell)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: idOptionsTasksCell,
+            for: indexPath) as! OptionsTableViewCell
+        
+        cell.cellTasksConfigure(
+            nameArray: cellNameArray,
+            indexPath: indexPath,
+            hexColor: hexColorCell
+        )
         return cell
     }
     
@@ -99,8 +129,12 @@ class TasksOptionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idOptionsTasksHeader) as! HeaderOptionsTableViewCell
-        header.headerConfigure(nameArray: headerNameArray, section: section)
+        let header = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: idOptionsTasksHeader) as! HeaderOptionsTableViewCell
+        header.headerConfigure(
+            nameArray: headerNameArray,
+            section: section
+        )
         return header
     }
     
@@ -118,14 +152,11 @@ class TasksOptionsTableViewController: UITableViewController {
             dateFormatter.dateFormat = "dd.MM.yyyy"
             let dateString = dateFormatter.string(from: date)
             self.cellNameArray[0] = dateString
-//            self.taskModel.taskDate = date
         }
         case 1: alertForCellName(label: cell.nameCellLabel, name: "Name Lesson", placeHolder: "Enter name lesson") {text in
-//            self.taskModel.taskName = text
             self.cellNameArray[1] = text
         }
         case 2: alertForCellName(label: cell.nameCellLabel, name: "Name Task", placeHolder: "Enter name task") {text in
-//            self.taskModel.taskDescription = text
             self.cellNameArray[2] = text
         }
         case 3: pushControllers(vc: TasksColorsTableViewController())

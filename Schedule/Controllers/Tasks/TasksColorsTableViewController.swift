@@ -32,8 +32,14 @@ class TasksColorsTableViewController: UITableViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
         tableView.separatorStyle = .none
         tableView.bounces = false
-        tableView.register(ColorsTableViewCell.self, forCellReuseIdentifier: idTasksColorCell)
-        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idTasksScheduleHeader)
+        tableView.register(
+            ColorsTableViewCell.self,
+            forCellReuseIdentifier: idTasksColorCell
+        )
+        tableView.register(
+            HeaderOptionsTableViewCell.self,
+            forHeaderFooterViewReuseIdentifier: idTasksScheduleHeader
+        )
     }
     
     private func setColor(color: String) {
@@ -52,7 +58,9 @@ class TasksColorsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idTasksColorCell, for: indexPath) as! ColorsTableViewCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: idTasksColorCell,
+            for: indexPath) as! ColorsTableViewCell
         cell.cellConfigure(indexPath: indexPath)
         return cell
     }
@@ -62,8 +70,12 @@ class TasksColorsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: idTasksScheduleHeader) as! HeaderOptionsTableViewCell
-        header.headerConfigure(nameArray: headerNameArray, section: section)
+        let header = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: idTasksScheduleHeader) as! HeaderOptionsTableViewCell
+        header.headerConfigure(
+            nameArray: headerNameArray,
+            section: section
+        )
         return header
     }
     
