@@ -85,15 +85,15 @@ class TasksColorsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-        case 0 : setColor(color: "FF2600")
-        case 1 : setColor(color: "FF9300")
-        case 2 : setColor(color: "FFFB00")
-        case 3 : setColor(color: "00F900")
-        case 4 : setColor(color: "0433FF")
-        case 5 : setColor(color: "5E5CE6")
-        case 6 : setColor(color: "942192")
+        case 0 : setColor(color: "FF6B6B")
+        case 1 : setColor(color: "FF922B")
+        case 2 : setColor(color: "FCC419")
+        case 3 : setColor(color: "51CF66")
+        case 4 : setColor(color: "339AF0")
+        case 5 : setColor(color: "5C7CFA")
+        case 6 : setColor(color: "845EF7")
         default:
-            setColor(color: "FFFFFF")
+            setColor(color: "ADB5BD")
         }
     }
     

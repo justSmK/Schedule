@@ -12,11 +12,13 @@ class ContactsOptionsTableViewController: UITableViewController {
     private let idOptionsContactsCell = "idOptionsContactsCell"
     private let idOptionsContactsHeader = "idOptionsContactsHeader"
     
-    private let headerNameArray = ["NAME",
-                           "PHONE",
-                           "MAIL",
-                           "TYPE",
-                           "CHOOSE IMAGE"]
+    private let headerNameArray = [
+        "NAME",
+        "PHONE",
+        "MAIL",
+        "TYPE",
+        "CHOOSE IMAGE"
+    ]
     
     var cellNameArray = ["Name", "Phone", "Mail", "Type", ""]
     

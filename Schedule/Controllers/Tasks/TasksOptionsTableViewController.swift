@@ -26,7 +26,7 @@ class TasksOptionsTableViewController: UITableViewController {
         ""
     ]
     
-    var hexColorCell = "FFFFFF"
+    var hexColorCell = "ADB5BD"
     
     var taskModel = TaskModel()
     var editModel: Bool = false
@@ -74,7 +74,7 @@ class TasksOptionsTableViewController: UITableViewController {
             cellNameArray = ["Date", "Lesson", "Task", ""]
             
             alertOK(title: "Success", message: nil)
-            hexColorCell = "FFFFFF"
+            hexColorCell = "ADB5BD"
             tableView.reloadData()
         } else {
             RealmManager.shared.updateTaskModel(

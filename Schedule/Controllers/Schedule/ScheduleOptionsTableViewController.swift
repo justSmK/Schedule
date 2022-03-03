@@ -31,7 +31,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
     var scheduleModel = ScheduleModel()
     var editModel: Bool = false
     
-    var hexColorCell = "FFFFFF"
+    var hexColorCell = "ADB5BD"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +80,7 @@ class ScheduleOptionsTableViewController: UITableViewController {
             ]
             
             alertOK(title: "Success", message: nil)
-            hexColorCell = "FFFFFF"
+            hexColorCell = "ADB5BD"
             cellNameArray[2][0] = "Teacher Name"
             tableView.reloadData()
         } else {

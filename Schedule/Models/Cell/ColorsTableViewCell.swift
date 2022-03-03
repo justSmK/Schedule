@@ -32,13 +32,14 @@ class ColorsTableViewCell: UITableViewCell {
     func cellConfigure(indexPath: IndexPath) {
 
         switch indexPath.section {
-        case 0: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.1490196078, blue: 0, alpha: 1)
-        case 1: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.5764705882, blue: 0, alpha: 1)
-        case 2: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
-        case 3: backgroundViewCell.backgroundColor = #colorLiteral(red: 0, green: 0.9764705882, blue: 0, alpha: 1)
-        case 4: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.01568627451, green: 0.2, blue: 1, alpha: 1)
-        case 5: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.368627451, green: 0.3607843137, blue: 0.9019607843, alpha: 1)
-        case 6: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.5803921569, green: 0.1294117647, blue: 0.5725490196, alpha: 1)
+//        case 0: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.1490196078, blue: 0, alpha: 1)
+        case 0: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.4196078431, blue: 0.4196078431, alpha: 1)
+        case 1: backgroundViewCell.backgroundColor = #colorLiteral(red: 1, green: 0.5725490196, blue: 0.168627451, alpha: 1)
+        case 2: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.9882352941, green: 0.768627451, blue: 0.09803921569, alpha: 1)
+        case 3: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.3176470588, green: 0.8117647059, blue: 0.4, alpha: 1)
+        case 4: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.2, green: 0.6039215686, blue: 0.9411764706, alpha: 1)
+        case 5: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.3607843137, green: 0.4862745098, blue: 0.9803921569, alpha: 1)
+        case 6: backgroundViewCell.backgroundColor = #colorLiteral(red: 0.5176470588, green: 0.368627451, blue: 0.968627451, alpha: 1)
         default:
             backgroundViewCell.backgroundColor = .white
         }
