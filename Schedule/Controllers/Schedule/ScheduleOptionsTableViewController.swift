@@ -12,21 +12,26 @@ class ScheduleOptionsTableViewController: UITableViewController {
     private let idOptionsScheduleCell = "idOptionsScheduleCell"
     private let idOptionsScheduleHeader = "idOptionsScheduleHeader"
     
-    private let headerNameArray = ["DATE AND TIME",
-                           "LESSON",
-                           "TEACHER",
-                           "COLOR",
-                           "PERIOD"]
+    private let headerNameArray = [
+        "DATE AND TIME",
+        "LESSON",
+        "TEACHER",
+        "COLOR",
+        "PERIOD"
+    ]
     
-    var cellNameArray = [["Date", "Time"],
-                         ["Name", "Type", "Building", "Audience"],
-                         ["Teacher Name"],
-                         [""],
-                         ["Repeate every week"]]
+    var cellNameArray = [
+        ["Date", "Time"],
+        ["Name", "Type", "Building", "Audience"],
+        ["Teacher Name"],
+        [""],
+        ["Repeate every week"]
+    ]
     
     var scheduleModel = ScheduleModel()
+    var editModel: Bool = false
     
-    var hexColorCell = "5E5CE6"
+    var hexColorCell = "FFFFFF"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,31 +41,78 @@ class ScheduleOptionsTableViewController: UITableViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
         tableView.separatorStyle = .none
         tableView.bounces = false
-        tableView.register(OptionsTableViewCell.self, forCellReuseIdentifier: idOptionsScheduleCell)
-        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader)
+        tableView.register(
+            OptionsTableViewCell.self,
+            forCellReuseIdentifier: idOptionsScheduleCell
+        )
+        tableView.register(
+            HeaderOptionsTableViewCell.self,
+            forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader
+        )
         
         title = "Options Schedule"
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save,
-                                                            target: self,
-                                                            action: #selector(saveButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .save,
+            target: self,
+            action: #selector(saveButtonTapped)
+        )
     }
     
     @objc private func saveButtonTapped() {
         
-        if scheduleModel.scheduleDate == nil ||
-            scheduleModel.scheduleTime == nil ||
-            scheduleModel.scheduleName == "Unknown" {
+        if cellNameArray[0][0] == "Date" ||
+            cellNameArray[0][1] == "Time" ||
+            cellNameArray[1][0] == "Name" {
             alertOK(title: "Error", message: "Required fields: Date, Time, Name")
-        } else {
+        } else if editModel == false {
+            setModel()
+            scheduleModel.scheduleColor = hexColorCell
             RealmManager.shared.saveScheduleModel(model: scheduleModel)
             scheduleModel = ScheduleModel()
-            scheduleModel.scheduleColor = hexColorCell
+            
+            cellNameArray = [
+                ["Date", "Time"],
+                ["Name", "Type", "Building", "Audience"],
+                ["Teacher Name"],
+                [""],
+                ["Repeate every week"]
+            ]
+            
             alertOK(title: "Success", message: nil)
-            hexColorCell = "5E5CE6"
+            hexColorCell = "FFFFFF"
             cellNameArray[2][0] = "Teacher Name"
             tableView.reloadData()
+        } else {
+            RealmManager.shared.updateScheduleModel(
+                model: scheduleModel,
+                nameArray: cellNameArray,
+                hexColor: hexColorCell,
+                scheduleRepeat: scheduleModel.scheduleRepeat
+            )
+            self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    private func setModel() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateString = dateFormatter.date(from: cellNameArray[0][0])
+        dateFormatter.dateFormat = "HH:mm"
+        let timeString = dateFormatter.date(from: cellNameArray[0][1])
+        
+        scheduleModel.scheduleDate = dateString
+        scheduleModel.scheduleTime = timeString
+        scheduleModel.scheduleName = cellNameArray[1][0]
+        scheduleModel.scheduleType = cellNameArray[1][1]
+        scheduleModel.scheduleBuilding = cellNameArray[1][2]
+        scheduleModel.scheduleAudience = cellNameArray[1][3]
+        
+        let calendar = Calendar.current
+        let component = calendar.dateComponents([.weekday], from: dateString!)
+        guard let weekday = component.weekday else { return }
+        let numberWeekday = weekday
+        scheduleModel.scheduleWeekday = numberWeekday
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -79,8 +131,15 @@ class ScheduleOptionsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsScheduleCell, for: indexPath) as! OptionsTableViewCell
-        cell.cellScheduleConfigure(nameArray: cellNameArray, indexPath: indexPath, hexColor: hexColorCell)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: idOptionsScheduleCell,
+            for: indexPath) as! OptionsTableViewCell
+        cell.cellScheduleConfigure(
+            nameArray: cellNameArray,
+            indexPath: indexPath,
+            hexColor: hexColorCell,
+            editModel: editModel
+        )
         cell.switchRepeatDelegate = self
         return cell
     }
@@ -106,28 +165,47 @@ class ScheduleOptionsTableViewController: UITableViewController {
         switch indexPath {
         case [0, 0]:
             alertDate(label: cell.nameCellLabel) { (numberWeekday, date) in
-            self.scheduleModel.scheduleDate = date
-            self.scheduleModel.scheduleWeekday = numberWeekday
-        }
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd.MM.yyyy"
+                let dateString = dateFormatter.string(from: date)
+                
+                self.cellNameArray[0][0] = dateString
+            }
         case [0, 1]:
             alertTime(label: cell.nameCellLabel) { (time) in
-            self.scheduleModel.scheduleTime = time
-        }
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "HH:mm"
+                let timeString = dateFormatter.string(from: time)
+                
+                self.cellNameArray[0][1] = timeString
+            }
         case [1, 0]:
-            alertForCellName(label: cell.nameCellLabel, name: "Name Lesson", placeHolder: "Enter name lesson") {text in
-                self.scheduleModel.scheduleName = text
+            alertForCellName(
+                label: cell.nameCellLabel,
+                name: "Name Lesson",
+                placeHolder: "Enter name lesson") {text in
+                self.cellNameArray[1][0] = text
             }
         case [1, 1]:
-            alertForCellName(label: cell.nameCellLabel, name: "Type lesson", placeHolder: "Enter type lesson") {text in
-                self.scheduleModel.scheduleType = text
+            alertForCellName(
+                label: cell.nameCellLabel,
+                name: "Type lesson",
+                placeHolder: "Enter type lesson") {text in
+                self.cellNameArray[1][1] = text
             }
         case [1, 2]:
-            alertForCellName(label: cell.nameCellLabel, name: "Building number", placeHolder: "Enter number of building") {text in
-                self.scheduleModel.scheduleBuilding = text
+            alertForCellName(
+                label: cell.nameCellLabel,
+                name: "Building number",
+                placeHolder: "Enter number of building") {text in
+                self.cellNameArray[1][2] = text
             }
         case [1, 3]:
-            alertForCellName(label: cell.nameCellLabel, name: "Auidience number", placeHolder: "Enter number of auidience") {text in
-                self.scheduleModel.scheduleAudience = text
+            alertForCellName(
+                label: cell.nameCellLabel,
+                name: "Auidience number",
+                placeHolder: "Enter number of auidience") {text in
+                self.cellNameArray[1][3] = text
             }
         case [2, 0]:
             pushControllers(vc: TeachersTableViewController())

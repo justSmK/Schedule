@@ -87,5 +87,32 @@ class RealmManager {
             model.taskColor = hexColor
         }
     }
+    
+    func updateScheduleModel(model: ScheduleModel, nameArray: [[String]], hexColor: String, scheduleRepeat: Bool) {
+        try! localRealm.write {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+            let dateString = dateFormatter.date(from: nameArray[0][0])
+            dateFormatter.dateFormat = "HH:mm"
+            let timeString = dateFormatter.date(from: nameArray[0][1])
+            
+            model.scheduleDate = dateString
+            model.scheduleTime = timeString
+            model.scheduleName = nameArray[1][0]
+            model.scheduleType = nameArray[1][1]
+            model.scheduleBuilding = nameArray[1][2]
+            model.scheduleAudience = nameArray[1][3]
+            model.scheduleColor = hexColor
+            
+            let calendar = Calendar.current
+            let component = calendar.dateComponents([.weekday], from: dateString!)
+            guard let weekday = component.weekday else { return }
+            let numberWeekday = weekday
+            model.scheduleWeekday = numberWeekday
+            
+            model.scheduleRepeat = scheduleRepeat
+            
+        }
+    }
 
 }

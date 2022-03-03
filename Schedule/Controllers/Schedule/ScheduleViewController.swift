@@ -32,7 +32,7 @@ class ScheduleViewController: UIViewController {
     
     private let tableView: UITableView = {
        let tableView = UITableView()
-        tableView.bounces = false //упругость интерфейса
+        tableView.bounces = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
@@ -59,18 +59,27 @@ class ScheduleViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(ScheduleTableViewCell.self, forCellReuseIdentifier: idScheduleCell)
+        tableView.register(
+            ScheduleTableViewCell.self,
+            forCellReuseIdentifier: idScheduleCell
+        )
         
         setConstraints()
         swipeAction()
         
-        scheduleOnDay(date: Date())
+        scheduleOnDay(date: calendar.today!)
         
-        showHideButton.addTarget(self, action: #selector(showHideButtonTapped), for: .touchUpInside)
+        showHideButton.addTarget(
+            self,
+            action: #selector(showHideButtonTapped),
+            for: .touchUpInside
+        )
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addButtonTapped)
+        )
         
         navigationController?.tabBarController?.tabBar.scrollEdgeAppearance = navigationController?.tabBarController?.tabBar.standardAppearance
         
@@ -78,6 +87,33 @@ class ScheduleViewController: UIViewController {
     
     @objc private func addButtonTapped() {
         let scheduleOption = ScheduleOptionsTableViewController()
+        navigationController?.pushViewController(scheduleOption, animated: true)
+    }
+    
+    @objc private func editingModel(scheduleModel: ScheduleModel) {
+        let scheduleOption = ScheduleOptionsTableViewController()
+        scheduleOption.scheduleModel = scheduleModel
+        scheduleOption.editModel = true
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateString = dateFormatter.string(from: scheduleModel.scheduleDate!)
+        
+        dateFormatter.dateFormat = "HH:mm"
+        let timeString = dateFormatter.string(from: scheduleModel.scheduleTime!)
+        
+        scheduleOption.cellNameArray = [
+            [dateString, timeString],
+            [scheduleModel.scheduleName,
+             scheduleModel.scheduleType,
+             scheduleModel.scheduleBuilding,
+             scheduleModel.scheduleAudience],
+            [scheduleModel.scheduleTeacher],
+            [""],
+            ["Repeate every week - \(scheduleModel.scheduleRepeat)"]
+        ]
+        scheduleOption.hexColorCell = scheduleModel.scheduleColor
+        
         navigationController?.pushViewController(scheduleOption, animated: true)
     }
     
@@ -95,11 +131,17 @@ class ScheduleViewController: UIViewController {
     //MARK: SwipeGestureRecognizer
     
     private func swipeAction() {
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        let swipeUp = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(handleSwipe)
+        )
         swipeUp.direction = .up
         calendar.addGestureRecognizer(swipeUp)
         
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        let swipeDown = UISwipeGestureRecognizer(
+            target: self,
+            action: #selector(handleSwipe)
+        )
         swipeDown.direction = .down
         calendar.addGestureRecognizer(swipeDown)
     }
@@ -124,17 +166,24 @@ class ScheduleViewController: UIViewController {
             return Calendar.current.date(byAdding: components, to: dateStart)!
         }()
         
-        let predicateRepeat = NSPredicate(format: "scheduleWeekday = \(weekday) AND scheduleRepeat = true")
-        let predicateUnRepeat = NSPredicate(format: "scheduleRepeat = false AND scheduleDate BETWEEN %@", [dateStart, dateEnd])
+        let predicateRepeat = NSPredicate(
+            format: "scheduleWeekday = \(weekday) AND scheduleRepeat = true"
+        )
+        let predicateUnRepeat = NSPredicate(
+            format: "scheduleRepeat = false AND scheduleDate BETWEEN %@", [dateStart, dateEnd]
+        )
         
-        let compound = NSCompoundPredicate(type: .or, subpredicates: [predicateRepeat, predicateUnRepeat])
+        let compound = NSCompoundPredicate(
+            type: .or,
+            subpredicates: [predicateRepeat, predicateUnRepeat]
+        )
         
         scheduleArray = localRealm.objects(ScheduleModel.self).filter(compound).sorted(byKeyPath: "scheduleTime")
         tableView.reloadData()
     }
 }
 
-//MARK: UITableViewDelegate, UITableViewDataSource
+//MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -142,8 +191,9 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idScheduleCell,
-                                                 for: indexPath) as! ScheduleTableViewCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: idScheduleCell,
+            for: indexPath) as! ScheduleTableViewCell
         
         let model = scheduleArray[indexPath.row]
         cell.configure(model: model)
@@ -152,6 +202,11 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let model = scheduleArray[indexPath.row]
+        editingModel(scheduleModel: model)
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -167,7 +222,7 @@ extension ScheduleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-//MARK: FSCalendarDataSource, FSCalendarDelegate
+//MARK: - FSCalendarDataSource, FSCalendarDelegate
 
 extension ScheduleViewController: FSCalendarDataSource, FSCalendarDelegate {
     
@@ -181,25 +236,27 @@ extension ScheduleViewController: FSCalendarDataSource, FSCalendarDelegate {
     }
 }
 
-//MARK: SetConstraints
+//MARK: - SetConstraints
 
 extension ScheduleViewController {
     func setConstraints() {
         
         view.addSubview(calendar)
-        calendarHeightConstraint = NSLayoutConstraint(item: calendar,
-                                                      attribute: .height,
-                                                      relatedBy: .equal,
-                                                      toItem: nil,
-                                                      attribute: .notAnAttribute,
-                                                      multiplier: 1,
-                                                      constant: 300)
+        calendarHeightConstraint = NSLayoutConstraint(
+            item: calendar,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 300
+        )
         calendar.addConstraint(calendarHeightConstraint)
         
         NSLayoutConstraint.activate([
             calendar.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
             calendar.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            calendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            calendar.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
         ])
         
         view.addSubview(showHideButton)

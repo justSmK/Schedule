@@ -50,12 +50,17 @@ class OptionsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func cellScheduleConfigure(nameArray: [[String]], indexPath: IndexPath, hexColor: String) {
+    func cellScheduleConfigure(nameArray: [[String]], indexPath: IndexPath, hexColor: String, editModel: Bool) {
         nameCellLabel.text = nameArray[indexPath.section][indexPath.row]
         let color = UIColor().colorFromHex(hexColor)
         backgroundViewCell.backgroundColor = (indexPath.section == 3 ? color : .white)
-        repeatSwitch.isHidden = (indexPath.section == 4 ? false : true)
-        repeatSwitch.onTintColor = color
+        if editModel == false {
+            repeatSwitch.isHidden = (indexPath.section == 4 ? false : true)
+            repeatSwitch.onTintColor = color
+        } else {
+            repeatSwitch.isHidden = true
+        }
+        
     }
     
     func cellTasksConfigure(nameArray: [String], indexPath: IndexPath, hexColor: String) {

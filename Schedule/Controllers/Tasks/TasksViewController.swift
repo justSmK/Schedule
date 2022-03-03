@@ -66,9 +66,11 @@ class TasksViewController: UIViewController {
         
         showHideButton.addTarget(self, action: #selector(showHideButtonTapped), for: .touchUpInside)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(addButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addButtonTapped)
+        )
     }
     
     @objc private func addButtonTapped() {
@@ -210,13 +212,15 @@ extension TasksViewController {
         
         view.addSubview(calendar)
         
-        calendarHeightConstraint = NSLayoutConstraint(item: calendar,
-                                                      attribute: .height,
-                                                      relatedBy: .equal,
-                                                      toItem: nil,
-                                                      attribute: .notAnAttribute,
-                                                      multiplier: 1,
-                                                      constant: 300)
+        calendarHeightConstraint = NSLayoutConstraint(
+            item: calendar,
+            attribute: .height,
+            relatedBy: .equal,
+            toItem: nil,
+            attribute: .notAnAttribute,
+            multiplier: 1,
+            constant: 300
+        )
         calendar.addConstraint(calendarHeightConstraint)
         
         NSLayoutConstraint.activate([

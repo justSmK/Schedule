@@ -12,13 +12,15 @@ class ScheduleColorsTableViewController: UITableViewController {
     private let idOptionsColorCell = "idOptionsColorCell"
     private let idOptionsScheduleHeader = "idOptionsScheduleHeader"
     
-    private let headerNameArray = ["RED",
-                           "ORANGE",
-                           "YELLOW",
-                           "GREEN",
-                           "BLUE",
-                           "INDIGO",
-                           "VIOLET"]
+    private let headerNameArray = [
+        "RED",
+        "ORANGE",
+        "YELLOW",
+        "GREEN",
+        "BLUE",
+        "INDIGO",
+        "VIOLET"
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +30,14 @@ class ScheduleColorsTableViewController: UITableViewController {
         tableView.backgroundColor = #colorLiteral(red: 0.9594197869, green: 0.9599153399, blue: 0.975127399, alpha: 1)
         tableView.separatorStyle = .none
         tableView.bounces = false
-        tableView.register(ColorsTableViewCell.self, forCellReuseIdentifier: idOptionsColorCell)
-        tableView.register(HeaderOptionsTableViewCell.self, forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader)
+        tableView.register(
+            ColorsTableViewCell.self,
+            forCellReuseIdentifier: idOptionsColorCell
+        )
+        tableView.register(
+            HeaderOptionsTableViewCell.self,
+            forHeaderFooterViewReuseIdentifier: idOptionsScheduleHeader
+        )
         
         title = "Colors Schedule"
         
@@ -44,7 +52,9 @@ class ScheduleColorsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idOptionsColorCell, for: indexPath) as! ColorsTableViewCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: idOptionsColorCell,
+            for: indexPath) as! ColorsTableViewCell
         cell.cellConfigure(indexPath: indexPath)
         return cell
     }
